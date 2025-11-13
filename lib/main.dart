@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:device_preview/device_preview.dart';
 import 'package:orto_care/view/avaliacaopreoperatoria_view.dart';
 import 'package:orto_care/view/complicacoeseriscos_view.dart';
 import 'package:orto_care/view/cuidadosposoperatorio_view.dart';
@@ -11,10 +10,8 @@ import 'package:orto_care/view/procedimentoscirurgicos_view.dart';
 import 'view/questionario_view.dart';
 import 'view/tcle.dart';
 import 'view/welcome.dart';
-
-
 import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart'; // gerado pelo flutterfire configure
+import 'firebase_options.dart';
 
 
 
@@ -24,12 +21,14 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  runApp(
+ /* runApp(
     DevicePreview(
       enabled: true,
       builder: (context) => MainApp(),
     ),
   );
+*/
+  runApp(const MainApp());
 }
 
 class MainApp extends StatelessWidget {

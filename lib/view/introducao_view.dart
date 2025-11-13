@@ -1,80 +1,92 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class IntroducaoView extends StatelessWidget {
-  final List<Map<String, dynamic>> topicos = [
-    {
-      "icone": FontAwesomeIcons.userDoctor,
-      "titulo": "Dúvidas e inseguranças",
-      "texto":
-          "Durante a preparação para uma cirurgia craniofacial, é natural que surjam dúvidas e inseguranças. "
-          "Muitas vezes, as informações passadas ao paciente ainda são limitadas ou insuficientes.",
-    },
-    {
-      "icone": FontAwesomeIcons.handHoldingMedical,
-      "titulo": "Autonomia e consentimento",
-      "texto":
-          "O consentimento informado é um direito garantido, mas explicar procedimentos complexos exige mais do que uma conversa rápida no consultório. "
-          "É preciso espaço de escuta e diálogo verdadeiro.",
-    },
-    {
-      "icone": FontAwesomeIcons.images,
-      "titulo": "Limitações das imagens",
-      "texto":
-          "Imagens de 'antes e depois' são comuns, mas podem gerar expectativas irreais. "
-          "Instituições médicas, como a SBCP, desencorajam seu uso como única forma de orientação.",
-    },
-    {
-      "icone": FontAwesomeIcons.lightbulb,
-      "titulo": "Novas formas de orientar",
-      "texto":
-          "Explicações devem respeitar o tempo e a linguagem de cada paciente. "
-          "Ferramentas educativas mais claras e acessíveis ajudam a criar confiança.",
-    },
-    {
-      "icone": FontAwesomeIcons.bookMedical,
-      "titulo": "Propósito do projeto",
-      "texto":
-          "Este aplicativo nasceu com o objetivo de unir saúde e educação, criando recursos que ajudem pacientes a entender melhor a cirurgia ortognática.",
-    },
-  ];
+  const IntroducaoView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final List<Map<String, dynamic>> blocos = [
+      {
+        "titulos": ["Dúvidas e inseguranças", "Autonomia e consentimento"],
+        "textos": [
+          "Durante a preparação para uma cirurgia craniofacial, é natural que surjam dúvidas e inseguranças. "
+              "O que observamos na prática clínica é que a forma como essas informações chegam ao paciente ainda é limitada e, muitas vezes, insuficiente.",
+          "Embora a autonomia do paciente e o consentimento informado sejam direitos garantidos, "
+              "falta um verdadeiro espaço de escuta e entendimento. Explicar um procedimento complexo requer mais do que apenas uma conversa rápida no consultório.",
+        ],
+      },
+      {
+        "titulos": ["Novas abordagens", "Propósito do projeto"],
+        "textos": [
+          "É preciso desenvolver novas formas de explicar o que será feito, respeitando o tempo, a linguagem e o momento de cada pessoa. "
+              "As ferramentas devem ser claras, realistas, acessíveis e promover confiança.",
+          "Foi com esse olhar ampliado, unindo saúde e educação, que nasceu o propósito deste projeto: "
+              "criar estratégias educativas inovadoras para pacientes em cirurgia craniofacial.",
+        ],
+      },
+    ];
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Introdução"),
-        backgroundColor: Colors.blue,
+        iconTheme: const IconThemeData(color: Colors.white),
+        backgroundColor: const Color.fromARGB(255, 15, 74, 127),
+        title: const Text(
+          "Introdução",
+          style: TextStyle(color: Colors.white),
+        ),
+        centerTitle: true,
       ),
-      body: ListView.builder(
-        itemCount: topicos.length,
-        itemBuilder: (context, index) {
-          final item = topicos[index];
-          return Card(
-            margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
-            ),
-            elevation: 3,
-            child: ExpansionTile(
-              leading: Icon(item["icone"], color: Colors.blue),
-              title: Text(
-                item["titulo"],
-                style: const TextStyle(fontWeight: FontWeight.bold),
-              ),
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Text(
-                    item["texto"],
-                    textAlign: TextAlign.justify,
-                    style: const TextStyle(fontSize: 16, height: 1.4),
+      backgroundColor: Colors.white,
+     body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("lib/image/fundo3.png"),
+            fit: BoxFit.cover, 
+          //  opacity: 0.15, 
+          ),
+        ),
+        child: ListView(
+          padding: const EdgeInsets.all(16),
+          children: [
+
+            const SizedBox(height: 30),
+
+            // Conteúdo dos blocos 
+            ...blocos.expand((bloco) {
+              return List.generate(bloco["titulos"].length, (i) {
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 24.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        bloco["titulos"][i],
+                        style: const TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Color.fromARGB(255, 25, 45, 96),
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                      const SizedBox(height: 10),
+                      Text(
+                        bloco["textos"][i],
+                        textAlign: TextAlign.justify,
+                        style: const TextStyle(
+                          fontSize: 17,
+                          height: 1.5,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ],
                   ),
-                )
-              ],
-            ),
-          );
-        },
+                );
+              });
+            }),
+
+            const SizedBox(height: 40),
+          ],
+        ),
       ),
     );
   }

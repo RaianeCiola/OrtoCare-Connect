@@ -1,90 +1,121 @@
 import 'package:flutter/material.dart';
 
-class ComplicacoesRiscosView extends StatelessWidget {
+class ComplicacoesRiscosView extends StatefulWidget {
   const ComplicacoesRiscosView({Key? key}) : super(key: key);
+
+  @override
+  State<ComplicacoesRiscosView> createState() => _ComplicacoesRiscosViewState();
+}
+
+class _ComplicacoesRiscosViewState extends State<ComplicacoesRiscosView> {
+  final Set<int> expandedIndices = <int>{};
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Complicações e Riscos Cirúrgicos"),
-        backgroundColor: Colors.blue,
+    
+        iconTheme: const IconThemeData(color: Colors.white),
+        backgroundColor: const Color.fromARGB(255, 15, 74, 127),
+
+      
+        title: FittedBox(
+          fit: BoxFit.scaleDown, // faz o texto diminuir se necessário
+          child: const Text(
+            "Complicações e Riscos Cirúrgicos",
+            style: TextStyle(
+              color: Colors.white,
+            
+            ),
+          ),
+        ),
+        centerTitle: true,
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
-        child: Column(
+
+      backgroundColor: Colors.white,
+ body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("lib/image/fundo3.png"),
+            fit: BoxFit.cover, 
+          ),
+        ),
+        child: ListView(
+          padding: const EdgeInsets.all(16),
           children: [
             const Text(
               "Toda cirurgia envolve riscos, e com a cirurgia craniofacial não é diferente. "
               "Apesar de toda a tecnologia e preparo da equipe, alguns efeitos e complicações podem ocorrer. "
               "Toque nos tópicos abaixo para conhecer melhor:",
-              style: TextStyle(fontSize: 16),
+              style: TextStyle(fontSize: 16, height: 1.5),
+              textAlign: TextAlign.justify,
             ),
             const SizedBox(height: 20),
-
-            // Complicações mais comuns
             _buildMainCard(
-              titulo: "🔄 Complicações mais comuns no pós-operatório",
+              index: 0,
+              icone: Icons.healing,
+              titulo: "Complicações mais comuns no pós-operatório",
               conteudo: Column(
                 children: [
                   _buildSubCard("Dor",
-                      "É comum nos primeiros dias e geralmente controlada com medicamentos prescritos."),
+                      "A dor é esperada nos primeiros dias após a cirurgia, sendo parte natural do processo de recuperação. Utilizamos medicamentos específicos para mantê-la sob controle, permitindo que você descanse e se recupere com mais conforto. A intensidade diminui progressivamente a cada dia."),
                   _buildSubCard("Edema (inchaço)",
-                      "Ocorre no rosto e pode durar alguns dias. Compressas frias e manter a cabeça elevada ajudam a reduzir."),
+                      "O inchaço no rosto é esperado e tende a ser mais intenso nos primeiros dias. Manter a cabeça elevada e fazer compressas frias ajudam a reduzir o desconforto e aceleram a melhora."),
                   _buildSubCard("Equimoses (manchas roxas)",
-                      "Aparecem ao redor dos olhos e bochechas, desaparecendo gradualmente."),
+                      "São como hematomas que aparecem ao redor dos olhos e bochechas. São temporárias e fazem parte do processo de cicatrizaçãoo. Elas somem naturalmente em cerca de 2 semanas, mudando de cor até desaparecer."),
                   _buildSubCard("Dificuldade para abrir a boca",
-                      "Mais intensa nos primeiros dias, mas melhora com o tempo e fisioterapia."),
+                      "A limitação para abrir a boca ocorre devido ao inchaço e adaptação muscular pós-cirúrgica. É temporária e melhora com exercícios específicos e orientação do cirurgião. Com a fisioterapia e o tempo, você recuperará gradualmente os movimentos normais da mandíbula."),
                 ],
               ),
             ),
-
-            // Complicações específicas
             _buildMainCard(
-              titulo: "⚠️ Complicações específicas",
+              index: 1,
+              icone: Icons.warning_amber_rounded,
+              titulo: "Complicações específicas",
               conteudo: Column(
                 children: [
                   _buildSubCard("Má adaptação das placas",
-                      "Em alguns casos, as placas de fixação podem não se adaptar adequadamente."),
+                      "As placas e parafusos de titânio usados para fixar os ossos podem, em casos raros, não se adaptar perfeitamente. Em alguns casos, pode causar algum desconforto ou adaptação inadequada, onde pode ser necessário uma pequena intervenção para ajuste ou remoção."),
                   _buildSubCard("Má oclusão dentária",
-                      "Pode ocorrer desalinhamento da mordida após a cirurgia."),
+                      "É quando os dentes superiores e inferiores não encaixam perfeitamente após a cirurgia. Se ocorrer, é feito o acompanhamento pelo cirurgião e ortodontista e costuma ser ajustado com o uso de elásticos e aparelho ortodôntico ou, em casos específicos, com um pequeno reposicionamento cirúrgico. \n"
+                       "Seu ortodontista acompanhará isso de perto."),
                   _buildSubCard("Obstrução nasal",
-                      "Dificuldade para respirar pelo nariz em alguns casos."),
+                      "É comum ter dificuldade para respirar pelo nariz nas primeiras semanas devido ao inchaço interno. Isso melhora gradualmente, mas em alguns casos pode persistir, exigindo cuidados especificos ou medicações para desobstruir as vias aéreas."),
                   _buildSubCard("Parestesia",
-                      "Sensação de dormência em regiões da face, temporária ou definitiva."),
+                      "É a sensação de dormência ou formigamento em lábios, queixo ou bochechas, que ocorre porque os nervos sensoriais foram reposicionados. Na maioria dos casos é temporária e melhora em meses, mas em uma pequena porcentagem de pacientes pode ser permanente."),
                   _buildSubCard("Paralisia facial",
-                      "Pode ocorrer em áreas com nervos sensíveis; pode ser temporária ou rara vez permanente."),
+                      "Diferente da parestesia, aqui há uma dificuldade de movimentar alguns músculos da face. Na maioria das vezes é temporário e ocorre se algum nervo for afetado durante o procedimento. Casos permanentes são muito raros e a equipe toma todos os cuidados para preservar esses nervos durante a cirurgia."),
                   _buildSubCard("Infecção",
-                      "Inflamações locais que podem exigir antibióticos ou drenagem."),
+                      "Como em qualquer cirurgia, existe risco de infecção na região operada. A higiene bucal adequada, o uso correto dos antibióticos e o acompanhamento regular reduzem significativamente esse risco."),
                   _buildSubCard("Necessidade de novos procedimentos",
-                      "Alguns pacientes podem precisar de ajustes ou cirurgias adicionais."),
+                      "Em alguns casos, pode ser necessário realizar pequenas cirurgias complementares ou ajustes ortodônticos para aperfeiçoar o resultado final. Isso faz parte do processo de reabilitação."),
                   _buildSubCard("Complicações graves",
-                      "Casos raros podem envolver internação prolongada, UTI ou risco de morte."),
+                      "São muito raras, mas podem incluir sangramentos importantes, internação prolongada ou complicações respiratórias. A equipe médica é treinada para prevenir e tratar qualquer intercorrência com segurança."),
                 ],
               ),
             ),
-
-            // Cuidado compartilhado
             _buildMainCard(
-              titulo: "🧭 Cuidado compartilhado",
+              index: 2,
+              icone: Icons.handshake,
+              titulo: "Cuidado compartilhado",
               conteudo: const Text(
                 "O sucesso da cirurgia depende também da sua participação:\n\n"
                 "• Esclareça dúvidas antes da cirurgia;\n"
                 "• Siga todas as orientações médicas;\n"
                 "• Compareça aos retornos e acompanhamentos;\n"
                 "• Entenda que ajustes podem ser necessários ao longo do tempo.",
-                style: TextStyle(fontSize: 15),
+                style: TextStyle(fontSize: 15, height: 1.5),
               ),
             ),
-
-            // Decisão consciente
             _buildMainCard(
-              titulo: "🤝 Decisão consciente, responsabilidade compartilhada",
+              index: 3,
+              icone: Icons.people_alt,
+              titulo: "Decisão consciente, responsabilidade compartilhada",
               conteudo: const Text(
                 "Você tem o direito de participar das decisões sobre seu tratamento. "
                 "Inclua pessoas de confiança nesse processo para maior segurança. "
                 "A equipe médica está comprometida em cuidar de você, mas a sua participação é fundamental.",
-                style: TextStyle(fontSize: 15),
+                style: TextStyle(fontSize: 15, height: 1.5),
               ),
             ),
           ],
@@ -93,36 +124,74 @@ class ComplicacoesRiscosView extends StatelessWidget {
     );
   }
 
-  // Card principal (branco)
-  Widget _buildMainCard({required String titulo, required Widget conteudo}) {
+  Widget _buildMainCard({
+    required int index,
+    required IconData icone,
+    required String titulo,
+    required Widget conteudo,
+  }) {
+    final isExpanded = expandedIndices.contains(index);
+
     return Card(
+      color: Colors.white,
       margin: const EdgeInsets.symmetric(vertical: 10),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      color: Colors.white,
-      child: ExpansionTile(
-        leading: const Icon(Icons.info, color: Colors.blue),
-        title: Text(
-          titulo,
-          style: const TextStyle(fontWeight: FontWeight.bold),
+      elevation: 5,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(12),
+        child: ExpansionTile(
+          initiallyExpanded: isExpanded,
+          onExpansionChanged: (expanded) {
+            setState(() {
+              if (expanded) {
+                expandedIndices.add(index);
+              } else {
+                expandedIndices.remove(index);
+              }
+            });
+          },
+          tilePadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          backgroundColor: isExpanded
+              ? const Color.fromARGB(255, 25, 45, 96)
+              : const Color(0xFFE9F2FF),
+          leading: Icon(
+            icone,
+            color: isExpanded
+                ? Colors.white
+                : const Color.fromARGB(255, 25, 45, 96),
+          ),
+          title: Text(
+            titulo,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: isExpanded
+                  ? Colors.white
+                  : const Color.fromARGB(255, 25, 45, 96),
+            ),
+          ),
+          children: [
+            Container(
+              color: Colors.white,
+              padding: const EdgeInsets.all(12.0),
+              child: conteudo,
+            ),
+          ],
         ),
-        children: [
-          Padding(padding: const EdgeInsets.all(12.0), child: conteudo),
-        ],
       ),
     );
   }
 
-  // Subcard (azul claro dentro do branco)
   Widget _buildSubCard(String titulo, String descricao) {
     return Card(
       margin: const EdgeInsets.symmetric(vertical: 6),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      color: Colors.blue.shade50,
+      color: const Color.fromARGB(255, 244, 244, 244),
+      elevation: 3,
       child: ExpansionTile(
-        leading: const Icon(Icons.arrow_right, color: Colors.blue),
         title: Text(
           titulo,
-          style: const TextStyle(fontWeight: FontWeight.w600),
+          style: const TextStyle(
+              fontWeight: FontWeight.w600, color: Colors.black),
         ),
         children: [
           Padding(

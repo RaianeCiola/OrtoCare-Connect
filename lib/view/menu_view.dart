@@ -5,9 +5,7 @@ import 'package:orto_care/view/cuidadosposoperatorio_view.dart';
 import 'package:orto_care/view/definicao_view.dart';
 import 'package:orto_care/view/introducao_view.dart';
 import 'package:orto_care/view/procedimentoscirurgicos_view.dart';
-
 import 'questionario_view.dart';
-
 
 class MenuView extends StatelessWidget {
   const MenuView({Key? key}) : super(key: key);
@@ -32,9 +30,27 @@ class MenuView extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(
-                "OrtoCare Connect",
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              Stack(
+                alignment: Alignment.center,
+                children: [
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Image.asset(
+                      'lib/image/logo-menu.png', 
+                      height: 68,
+                    ),
+                  ),
+                  const Center(
+                    child: Text(
+                      "OrtoCare Connect",
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        color: const Color.fromARGB(255, 25, 45, 96),
+                      ),
+                    ),
+                  ),
+                ],
               ),
               const SizedBox(height: 30),
 
@@ -52,14 +68,16 @@ class MenuView extends StatelessWidget {
                           if (opcoes[index] == "INTRODUÇÃO") {
                             Navigator.push(
                               context,
-                              MaterialPageRoute( builder: (context) =>  IntroducaoView(),
+                              MaterialPageRoute(
+                                builder: (context) =>  IntroducaoView(),
                               ),
                             );
                           }
                           if (opcoes[index] == "DEFINIÇÕES") {
                             Navigator.push(
                               context,
-                              MaterialPageRoute( builder: (context) =>  DefinicaoView(),
+                              MaterialPageRoute(
+                                builder: (context) =>  DefinicaoView(),
                               ),
                             );
                           }
@@ -67,7 +85,8 @@ class MenuView extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const AvaliacaoPreOperatoriaView(),
+                                builder: (context) =>
+                                    const AvaliacaoPreOperatoriaView(),
                               ),
                             );
                           }
@@ -75,7 +94,8 @@ class MenuView extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const ProcedimentosCirurgicosView(),
+                                builder: (context) =>
+                                    const ProcedimentosCirurgicosView(),
                               ),
                             );
                           }
@@ -83,15 +103,18 @@ class MenuView extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const CuidadosPosOperatoriosView(),
+                                builder: (context) =>
+                                    const CuidadosPosOperatoriosView(),
                               ),
                             );
                           }
-                          if (opcoes[index] == "COMPLICAÇÕES E RISCOS CIRÚRGICOS") {
+                          if (opcoes[index] ==
+                              "COMPLICAÇÕES E RISCOS CIRÚRGICOS") {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const ComplicacoesRiscosView(),
+                                builder: (context) =>
+                                    const ComplicacoesRiscosView(),
                               ),
                             );
                           }
@@ -105,12 +128,19 @@ class MenuView extends StatelessWidget {
                           }
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.blue,
+                          backgroundColor:
+                              const Color.fromARGB(255, 18, 81, 136),
                           padding: const EdgeInsets.symmetric(vertical: 16),
+                         shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                         ),
                         ),
                         child: Text(
                           opcoes[index],
-                          style: const TextStyle(color: Colors.white),
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
                           textAlign: TextAlign.center,
                         ),
                       ),
@@ -118,8 +148,6 @@ class MenuView extends StatelessWidget {
                   },
                 ),
               ),
-
-              const SizedBox(height: 10),
             ],
           ),
         ),

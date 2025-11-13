@@ -5,42 +5,66 @@ class WelcomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final double screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            // Ícone medico
-            Icon(
-              Icons.medical_services_outlined,
-              size: 100,
-              color: Colors.blue,
-            ),
-            SizedBox(height: 20),
-            Text(
-              'OrtoCare\nConnect',
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
-            ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Spacer(),
 
-            SizedBox(height: 40),
+              // Logo com tamanho responsivo
+              Image.asset(
+                'lib/image/logo_SF.png',
+                width: screenHeight * 0.50, // aumenta proporcionalmente
+                height: screenHeight * 0.35,
+                fit: BoxFit.contain,
+              ),
 
-            // Botão "Entrar"
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, 'info');
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue,
-                padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+              const SizedBox(height: 30),
+
+              // Nome do app com tipografia aprimorada
+              /* const Text(
+                'ORTO CARE CONNECT',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 26,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 1.2,
+                  color: Colors.blueAccent,
+                ),
+              ),*/
+              const Spacer(),
+
+              // Botão "Entrar"
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, 'info');
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color.fromARGB(255, 22, 42, 94),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 80,
+                    vertical: 15,
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  elevation: 4,
+                ),
+                child: const Text(
+                  'ENTRAR',
+                  style: TextStyle(color: Colors.white, fontSize: 18),
+                ),
               ),
-              child: Text(
-                'ENTRAR',
-                style: TextStyle(color: Colors.white, fontSize: 16),
-              ),
-            ),
-          ],
+
+              const SizedBox(height: 60),
+            ],
+          ),
         ),
       ),
     );

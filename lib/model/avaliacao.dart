@@ -1,6 +1,5 @@
-
-
 class Avaliacao {
+  final String telefone; 
   final int idade;
   final String genero;
   final bool diagnosticoCirurgia;
@@ -8,7 +7,7 @@ class Avaliacao {
   final int compreensaoPosUso;
   final int confortoDiscussaoRiscos;
   final int clarezaInformacoes;
-  final int utilidadeMultimidia;
+ // final int utilidadeMultimidia;
   final int autonomiaDecisao;
   final int designNavegabilidade;
   final int satisfacaoGeral;
@@ -16,6 +15,7 @@ class Avaliacao {
   final String comentariosAdicionais;
 
   Avaliacao({
+    required this.telefone,
     required this.idade,
     required this.genero,
     required this.diagnosticoCirurgia,
@@ -23,7 +23,7 @@ class Avaliacao {
     required this.compreensaoPosUso,
     required this.confortoDiscussaoRiscos,
     required this.clarezaInformacoes,
-    required this.utilidadeMultimidia,
+  //  required this.utilidadeMultimidia,
     required this.autonomiaDecisao,
     required this.designNavegabilidade,
     required this.satisfacaoGeral,
@@ -33,6 +33,7 @@ class Avaliacao {
 
   Map<String, dynamic> toJson() {
     return {
+      "telefone": telefone,
       "idade": idade,
       "genero": genero,
       "diagnosticoCirurgia": diagnosticoCirurgia,
@@ -40,7 +41,7 @@ class Avaliacao {
       "compreensaoPosUso": compreensaoPosUso,
       "confortoDiscussaoRiscos": confortoDiscussaoRiscos,
       "clarezaInformacoes": clarezaInformacoes,
-      "utilidadeMultimidia": utilidadeMultimidia,
+    //  "utilidadeMultimidia": utilidadeMultimidia,
       "autonomiaDecisao": autonomiaDecisao,
       "designNavegabilidade": designNavegabilidade,
       "satisfacaoGeral": satisfacaoGeral,

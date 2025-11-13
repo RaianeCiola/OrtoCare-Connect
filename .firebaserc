@@ -1,0 +1,8 @@
+{
+  "projects": {
+    "default": "ortocare-connect",
+    "firebase deploy": "ortocare-connect"
+  },
+  "targets": {},
+  "etags": {}
+}

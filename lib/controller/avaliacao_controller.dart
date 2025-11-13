@@ -6,7 +6,7 @@ import '../model/avaliacao.dart';
 
 class AvaliacaoController {
   final CollectionReference collection =
-      FirebaseFirestore.instance.collection("avaliacao_OA");
+      FirebaseFirestore.instance.collection("ortocare-connect");
 
   Future<void> salvarAvaliacao(BuildContext context, Avaliacao avaliacao) async {
     try {
